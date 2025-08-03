@@ -24,9 +24,11 @@
               {
                "group": "Быстрый старт",
                 "pages": [
-                "quickstart",
-                "quickstart/settings-schemes",
-                "quickstart/configuration"
+                "quickstart/quickstart",
+                "quickstart/step1-install-plugin",
+                "quickstart/step2-lk-registration",
+                "quickstart/step3-add-restaurant",
+                "quickstart/step4-required-settings"
                 ]
               }
             ]
