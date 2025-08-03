@@ -1,22 +1,26 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "theme": "aspen", 
+  "name": "Документация GuestMe",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#32D5AC",
+    "light": "#32D5AC",
+    "dark": "#32D5AC"
   },
-  "favicon": "/favicon.svg",
-  "navigation": {
+    "favicon": "/favicon.svg",
+    "navigation": {
+      "languages": [                
+      {
+        "language": "ru",
+        "default": true,
+        "hidden": false,
     "tabs": [
       {
-        "tab": "Guides",
-        "groups": [
+        "tab": "Документация",
+          "groups": [
           {
-            "group": "Getting started",
+            "group": "Начало работы",
             "pages": [
-              "index",
               "quickstart",
               "development"
             ]
@@ -38,11 +42,11 @@
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Настройки",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "settings/settings-widgets",
+              "settings/settings-autobooking",
+              "settings/settings-notifications"
             ]
           }
         ]
@@ -66,58 +70,49 @@
             ]
           }
         ]
-      }
+      
+  }
     ],
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Сайт GuestMe",
+          "href": "https://guestme.ru",
+          "icon": "globe"
         },
         {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "anchor": "Личный кабинет",
+          "href": "https://lk.guestme.ru",
+          "icon": "desktop"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Документация API",
+          "href": "https://documenter.getpostman.com/view/2618137/S1TbSECQ",
+          "icon": "code"
         }
       ]
     }
+    }
+    ]
   },
-  "logo": {
+    "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Зарегистрироваться",
+        "href": "https://lk.guestme.ru/registration"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Войти в ЛК",
+      "href": "https://lk.guestme.ru"
     }
   },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
-  "footer": {
+   "footer": {
     "socials": {
       "x": "https://x.com/mintlify",
       "github": "https://github.com/mintlify",
