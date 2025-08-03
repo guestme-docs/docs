@@ -1,7 +1,7 @@
 ---
 mode: "wide"
 title: ' '
-sidebarTitle: ''
+sidebarTitle: 'Добро пожаловать'
 ---
 
 <div className="text-center">
@@ -11,92 +11,43 @@ sidebarTitle: ''
   <p>Получите ответы на частые вопросы по настройке GuestMe</p>
 </div>
 
+<Columns cols={2}>
+  <Card title="Быстрый старт" icon="rocket" href="/quickstart">
+    Начните работу с GuestMe в несколько простых шагов
+  </Card>
+  <Card title="Инструкции" href="/features" icon="book">
+    Подробные руководства по настройке всех функций GuestMe
+  </Card>
+  <Card title="Для партнеров iiko" href="/partners" icon="handshake">
+    Информация и инструменты для партнеров - дилеров iiko, сервисов по привлечению гостей
+  </Card>
+  <Card title="Для разработчиков" href="/developers" icon="code">
+    Информация и инструменты для разработчиков - API, интеграции
+  </Card>
+</Columns>
+
+## Как начать пользоваться GuestMe
+
+<Steps>
+  <Step title="Регистрация">
+    Создайте аккаунт в сервисе GuestMe.
+  </Step>
+  <Step title="Создание события">
+    Организуйте ваше первое мероприятие.
+  </Step>
+  <Step title="Настройка виджетов">
+    Интегрируйте формы регистрации на ваш сайт.
+  </Step>
+  <Step title="Приглашение гостей">
+    Начните приглашать участников на ваше событие.
+  </Step>
+</Steps>
 
 <Card
-  title="Start here"
+  title="Начать!"
   icon="rocket"
   href="/quickstart"
   horizontal
 >
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
-
-## Create beautiful pages
-
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
-
-## Need inspiration?
-
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
+  Пройти шаги "Быстрого старта"
 </Card>

@@ -13,60 +13,52 @@
       {
         "language": "ru",
         "default": true,
-        "hidden": false,
-    "tabs": [
+        "tabs": [
       {
-        "tab": "Документация",
+        "tab": "Главная",
           "groups": [
           {
             "group": "Начало работы",
             "pages": [
-              "quickstart",
-              "development"
+              "index",
+              {
+               "group": "Быстрый старт",
+                "pages": [
+                "quickstart",
+                "quickstart/settings-schemes",
+                "quickstart/configuration"
+                ]
+              }
             ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "Настройки",
-            "pages": [
-              "settings/settings-widgets",
-              "settings/settings-autobooking",
-              "settings/settings-notifications"
-            ]
-          }
+         }          
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Документация",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Обзор",
+              "pages": [
+              "features-main"
+           ]
+          },
+          {
+            "group": "Настройки сервиса",
             "pages": [
-              "api-reference/introduction"
+              "features/settings/settings-widgets",
+              "features/settings/settings-autobooking",
+              "features/settings/settings-schemes",
+              "features/settings/settings-notifications"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Работа с резервами",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "features/booking/booking-table",
+              "features/booking/booking-create",
+              "features/booking/booking-edit",
+              "features/booking/booking-open-table",
+              "features/booking/booking-banquet"
             ]
           }
         ]
@@ -84,13 +76,8 @@
           "anchor": "Личный кабинет",
           "href": "https://lk.guestme.ru",
           "icon": "desktop"
-        },
-        {
-          "anchor": "Документация API",
-          "href": "https://documenter.getpostman.com/view/2618137/S1TbSECQ",
-          "icon": "code"
         }
-      ]
+        ]
     }
     }
     ]
