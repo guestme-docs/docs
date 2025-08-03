@@ -60,6 +60,12 @@
               "features/booking/booking-open-table",
               "features/booking/booking-banquet"
             ]
+          },
+          {
+            "group": "Привлечение гостей",
+            "pages": [
+              "features/guests/guests-restaurant-info"              
+            ]
           }
         ]
       
