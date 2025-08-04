@@ -1,0 +1,1010 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "GuestMe B2B API",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Generated server url"
+        }
+    ],
+    "security": [
+        {
+            "basicAuth": [],
+            "bearerAuth": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "External Integration API",
+            "description": "External Integration API"
+        }
+    ],
+    "paths": {
+        "/api/v1/external/webhook/{id}": {
+            "put": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Update a webhook",
+                "operationId": "updateWebhook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Webhook ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1001
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WebhookExternalDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookExternalDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Delete a webhook",
+                "operationId": "deleteWebhook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Webhook ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1001
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/webhook": {
+            "get": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Get all webhooks",
+                "operationId": "getAllWebhooks",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/WebhookExternalDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Create a new webhook",
+                "operationId": "createWebhook",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WebhookExternalDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookExternalDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/restaurant/{id}/booking": {
+            "post": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Request a booking for a restaurant",
+                "operationId": "requestBooking",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Restaurant ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1001
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookingExternalRequestDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingExternalDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/restaurant/{id}/table/free/count": {
+            "get": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Get restaurant free table count by given parameters",
+                "operationId": "countFreeRestaurantTables",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Restaurant ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1001
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Booking ISO date-time",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "example": "2025-01-01T10:00:00"
+                    },
+                    {
+                        "name": "persons",
+                        "in": "query",
+                        "description": "Booking persons",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "example": 2
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RestaurantTableCountDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/restaurant/{id}/schedule": {
+            "get": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Get restaurant schedule records",
+                "operationId": "getScheduleRecords",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Restaurant ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1001
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RestaurantScheduleGroupDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/restaurant/find/partner/{id}": {
+            "get": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Find a restaurant by partner system ID or PoS ID",
+                "description": "Finds a restaurant by external system identifier (e.g., iiko, r_keeper)",
+                "operationId": "findByPartnerId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "External partner ID (e.g., iiko or r_keeper UID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123-456-789"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RestaurantExternalDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/booking/{id}": {
+            "get": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Get a booking by id",
+                "operationId": "getBooking",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1001
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookingExternalDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Cancel a booking by id",
+                "operationId": "cancelBooking",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1001
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/oauth2/token": {
+            "post": {
+                "tags": [
+                    "OAuth2",
+                    "External Integration API"
+                ],
+                "summary": "Get access token",
+                "description": "Get access_token by client_credentials flow",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Basic base64(client_id:client_secret)",
+                        "required": true,
+                        "schema": {
+                            "example": "Basic dnRiOnZ0Yg=="
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Form for requesting access token using client_credentials",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "grant_type": {
+                                        "type": "string",
+                                        "description": "OAuth2 grant type, must be 'client_credentials'",
+                                        "example": "client_credentials"
+                                    },
+                                    "scope": {
+                                        "type": "string",
+                                        "description": "Must be 'ROLE_EXTERNAL_INTEGRATION'",
+                                        "example": "ROLE_EXTERNAL_INTEGRATION"
+                                    }
+                                },
+                                "required": [
+                                    "grant_type",
+                                    "scope"
+                                ]
+                            },
+                            "encoding": {
+                                "grant_type": {
+                                    "style": "form",
+                                    "explode": true
+                                },
+                                "scope": {
+                                    "style": "form",
+                                    "explode": true
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful token response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "scope": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "default": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "format": "int32"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "scope": "ROLE_EXTERNAL_INTEGRATION",
+                                    "access_token": "eyJhbGciOiJIUzUxMiJ9...",
+                                    "token_type": "Bearer",
+                                    "expires_in": 599
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "WebhookExternalDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Webhook ID"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "Webhook request URL",
+                        "example": "https://example.com/webhook",
+                        "minLength": 1
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "Bearer token for webhook request"
+                    },
+                    "events": {
+                        "type": "array",
+                        "description": "Set of event types to subscribe",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "CREATE",
+                                "UPDATE",
+                                "DELETE"
+                            ]
+                        },
+                        "maxItems": 20,
+                        "minItems": 0,
+                        "uniqueItems": true
+                    },
+                    "entities": {
+                        "type": "array",
+                        "description": "Set of entity types to subscribe",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "RESTAURANT",
+                                "BOOKING"
+                            ]
+                        },
+                        "maxItems": 20,
+                        "minItems": 0,
+                        "uniqueItems": true
+                    }
+                },
+                "required": [
+                    "url"
+                ]
+            },
+            "BookingExternalRequestDto": {
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "type": "string",
+                        "description": "Guest first name",
+                        "example": "Mike",
+                        "minLength": 1
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "description": "Guest last name",
+                        "example": "Kravec"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Booking ISO date",
+                        "example": "2025-01-01T00:00:00Z"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "description": "Guest valid phone number",
+                        "example": "+79994656464"
+                    },
+                    "persons": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Number of persons",
+                        "example": 2
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "Guest comment"
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/BookingMetaExternalDto",
+                        "description": "Booking meta"
+                    }
+                },
+                "required": [
+                    "date",
+                    "firstName",
+                    "persons",
+                    "phone"
+                ]
+            },
+            "BookingMetaExternalDto": {
+                "type": "object",
+                "properties": {
+                    "promo": {
+                        "type": "string",
+                        "description": "Booking promo code"
+                    }
+                }
+            },
+            "BookingExternalDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Booking ID",
+                        "example": 1001
+                    },
+                    "persons": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Number of persons",
+                        "example": 2
+                    },
+                    "firstName": {
+                        "type": "string",
+                        "description": "Guest first name",
+                        "example": "Mike"
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "description": "Guest last name",
+                        "example": "Kravec"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "description": "Guest valid phone number",
+                        "example": "+79994656464"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "Guest comment"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "Booking state",
+                        "enum": [
+                            "ACCEPTED",
+                            "DECLINED",
+                            "CANCELING",
+                            "CANCELED",
+                            "CREATED",
+                            "SENT",
+                            "CLOSED",
+                            "IN_PROGRESS",
+                            "PATCHING",
+                            "ERROR"
+                        ],
+                        "example": "ACCEPTED"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Booking ISO date",
+                        "example": "2025-01-01T00:00:00Z"
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/BookingMetaExternalDto",
+                        "description": "Booking meta"
+                    }
+                },
+                "required": [
+                    "date",
+                    "firstName",
+                    "id",
+                    "persons",
+                    "phone",
+                    "state"
+                ]
+            },
+            "RestaurantTableCountDto": {
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "RestaurantScheduleGroupDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "day": {
+                        "type": "string",
+                        "enum": [
+                            "MONDAY",
+                            "TUESDAY",
+                            "WEDNESDAY",
+                            "THURSDAY",
+                            "FRIDAY",
+                            "SATURDAY",
+                            "SUNDAY"
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "RESTAURANT",
+                            "BOOKING"
+                        ]
+                    },
+                    "restaurantId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "records": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RestaurantScheduleRecordDto"
+                        },
+                        "minItems": 1
+                    }
+                },
+                "required": [
+                    "day",
+                    "records",
+                    "restaurantId",
+                    "type"
+                ]
+            },
+            "RestaurantScheduleRecordDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "start": {
+                        "type": "string"
+                    },
+                    "end": {
+                        "type": "string"
+                    },
+                    "isWorkingTime": {
+                        "type": "boolean"
+                    },
+                    "day": {
+                        "type": "string",
+                        "enum": [
+                            "MONDAY",
+                            "TUESDAY",
+                            "WEDNESDAY",
+                            "THURSDAY",
+                            "FRIDAY",
+                            "SATURDAY",
+                            "SUNDAY"
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "RESTAURANT",
+                            "BOOKING"
+                        ]
+                    }
+                },
+                "required": [
+                    "day",
+                    "end",
+                    "isWorkingTime",
+                    "start"
+                ]
+            },
+            "AddressExternalDto": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "description": "Country",
+                        "example": "Russia"
+                    },
+                    "countryCode": {
+                        "type": "string",
+                        "description": "Country code",
+                        "example": "RU"
+                    },
+                    "city": {
+                        "type": "string",
+                        "description": "City",
+                        "example": "Moscow"
+                    },
+                    "home": {
+                        "type": "string",
+                        "description": "Home number",
+                        "example": 123
+                    },
+                    "street": {
+                        "type": "string",
+                        "description": "Street",
+                        "example": "Lenina"
+                    },
+                    "point": {
+                        "$ref": "#/components/schemas/GeoPoint",
+                        "description": "Geo point"
+                    }
+                },
+                "required": [
+                    "city",
+                    "country",
+                    "countryCode",
+                    "home",
+                    "point",
+                    "street"
+                ]
+            },
+            "GeoPoint": {
+                "type": "object",
+                "properties": {
+                    "x": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "y": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "RestaurantExternalDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Restaurant name",
+                        "example": "Gussi"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Restaurant status",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE",
+                            "DELETED"
+                        ],
+                        "example": "ACTIVE"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Restaurant description",
+                        "example": "Gussi is a good restaurant"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/AddressExternalDto",
+                        "description": "Restaurant address"
+                    },
+                    "properties": {
+                        "$ref": "#/components/schemas/RestaurantPropertiesExternalDto",
+                        "description": "Restaurant properties"
+                    },
+                    "identification": {
+                        "$ref": "#/components/schemas/RestaurantIdentificationExternalDto",
+                        "description": "Restaurant identification"
+                    }
+                },
+                "required": [
+                    "address",
+                    "id",
+                    "identification",
+                    "name",
+                    "properties",
+                    "status"
+                ]
+            },
+            "RestaurantIdentificationExternalDto": {
+                "type": "object",
+                "properties": {
+                    "taxNumber": {
+                        "type": "string",
+                        "description": "Tax number",
+                        "example": 123456789
+                    },
+                    "iikoUid": {
+                        "type": "string",
+                        "description": "IIKO UID",
+                        "example": "123-456-789"
+                    },
+                    "iikoCrmId": {
+                        "type": "string",
+                        "description": "IIKO CRM ID",
+                        "example": 123456789
+                    }
+                }
+            },
+            "RestaurantPropertiesExternalDto": {
+                "type": "object",
+                "properties": {
+                    "guestAcquisitionChannelEnabled": {
+                        "type": "boolean",
+                        "description": "Indicates that the restaurant has connected this guest acquisition channel and you can send your reservations to it"
+                    }
+                },
+                "required": [
+                    "guestAcquisitionChannelEnabled"
+                ]
+            },
+            "ExternalDto": {
+                "description": "Event inheritable payload",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/BookingExternalDto"
+                    },
+                    {
+                        "$ref": "#/components/schemas/RestaurantExternalDto"
+                    }
+                ]
+            },
+            "WebhookEventExternalDto": {
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "Event UUID",
+                        "example": "00000000-0000-0000-0000-000000000000"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Event ISO date",
+                        "example": "2025-01-01T00:00:00Z"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/ExternalDto"
+                    },
+                    "event": {
+                        "type": "string",
+                        "description": "Event type",
+                        "enum": [
+                            "CREATE",
+                            "UPDATE",
+                            "DELETE"
+                        ],
+                        "example": "UPDATE"
+                    },
+                    "entity": {
+                        "type": "string",
+                        "description": "Entity type",
+                        "enum": [
+                            "RESTAURANT",
+                            "BOOKING"
+                        ],
+                        "example": "BOOKING"
+                    }
+                },
+                "required": [
+                    "data",
+                    "date",
+                    "entity",
+                    "event",
+                    "uuid"
+                ]
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            },
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        }
+    }
+}
