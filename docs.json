@@ -1,97 +1,112 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "aspen", 
+  "theme": "aspen",
   "name": "Документация GuestMe",
   "colors": {
     "primary": "#32D5AC",
     "light": "#32D5AC",
     "dark": "#32D5AC"
   },
-    "favicon": "/favicon.svg",
-    "navigation": {
-      "languages": [                
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "languages": [
       {
         "language": "ru",
         "default": true,
         "hidden": false,
         "tabs": [
-      {
-        "tab": "Главная",
-          "groups": [
           {
-            "group": "Начало работы",
-            "pages": [
-              "index",
+            "tab": "Главная",
+            "groups": [
               {
-               "group": "Быстрый старт",
+                "group": "Начало работы",
                 "pages": [
-                "quickstart/quickstart",
-                "quickstart/step1-install-plugin",
-                "quickstart/step2-lk-registration",
-                "quickstart/step3-required-settings"
+                  "index",
+                  {
+                    "group": "Быстрый старт",
+                    "pages": [
+                      "quickstart/quickstart",
+                      "quickstart/step1-install-plugin",
+                      "quickstart/step2-lk-registration",
+                      "quickstart/step3-required-settings"
+                    ]
+                  }
                 ]
               }
             ]
-         }
-         
-        ]
-      },
-      {
-        "tab": "Документация",
-        "groups": [
-          {
-            "group": "Обзор",
-              "pages": [
-              "features-main"
-           ]
           },
           {
-            "group": "Настройки сервиса",
-            "pages": [
-              "features/settings/settings-widgets",
-              "features/settings/settings-autobooking",
-              "features/settings/settings-schemes",
-              "features/settings/settings-notifications"
+            "tab": "Документация",
+            "groups": [
+              {
+                "group": "Обзор",
+                "pages": [
+                  "features-main"
+                ]
+              },
+              {
+                "group": "Настройки сервиса",
+                "pages": [
+                  "features/settings/settings-widgets",
+                  "features/settings/settings-autobooking",
+                  "features/settings/settings-schemes",
+                  "features/settings/settings-notifications"
+                ]
+              },
+              {
+                "group": "Работа с резервами",
+                "pages": [
+                  "features/booking/booking-table",
+                  "features/booking/booking-create",
+                  "features/booking/booking-edit",
+                  "features/booking/booking-open-table",
+                  "features/booking/booking-banquet"
+                ]
+              },
+              {
+                "group": "Привлечение гостей",
+                "pages": [
+                  "features/guests/guests-restaurant-info"
+                ]
+              }
             ]
           },
           {
-            "group": "Работа с резервами",
-            "pages": [
-              "features/booking/booking-table",
-              "features/booking/booking-create",
-              "features/booking/booking-edit",
-              "features/booking/booking-open-table",
-              "features/booking/booking-banquet"
-            ]
-          },
-          {
-            "group": "Привлечение гостей",
-            "pages": [
-              "features/guests/guests-restaurant-info"              
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "С чего начать",
+                "pages": [
+                  "integration/about"
+                ]
+              },
+              {
+                "group": "GuestMe B2B API",
+                "openapi": {
+                  "source": "integration/openapi/guestme-openapi.json"
+                }
+              }
             ]
           }
-        ]
-      
-  }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Сайт GuestMe",
-          "href": "https://guestme.ru",
-          "icon": "globe"
-        },
-        {
-          "anchor": "Личный кабинет",
-          "href": "https://lk.guestme.ru",
-          "icon": "desktop"
+        ],
+        "global": {
+          "anchors": [
+            {
+              "anchor": "Сайт GuestMe",
+              "href": "https://guestme.ru",
+              "icon": "globe"
+            },
+            {
+              "anchor": "Личный кабинет",
+              "href": "https://lk.guestme.ru",
+              "icon": "desktop"
+            }
+          ]
         }
-        ]
-    }
-    }
+      }
     ]
   },
-    "logo": {
+  "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
@@ -108,7 +123,7 @@
       "href": "https://lk.guestme.ru"
     }
   },
-   "footer": {
+  "footer": {
     "socials": {
       "x": "https://x.com/mintlify",
       "github": "https://github.com/mintlify",
