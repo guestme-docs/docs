@@ -214,6 +214,90 @@
                 ]
             }
         },
+        "/api/v1/external/restaurant": {
+            "get": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Get a page of restaurants by search text",
+                "operationId": "findAllRestaurant",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search string for filtering restaurants by name and address",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pageable",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Pageable"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageRestaurantExternalDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/restaurant/{id}": {
+            "get": {
+                "tags": [
+                    "External Integration API"
+                ],
+                "summary": "Get a restaurant by GuestMe ID",
+                "operationId": "getRestaurantById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Restaurant ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1001
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RestaurantExternalDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/external/restaurant/{id}/table/free/count": {
             "get": {
                 "tags": [
@@ -504,10 +588,10 @@
                                     }
                                 },
                                 "example": {
-                                    "scope": "ROLE_EXTERNAL_INTEGRATION",
                                     "access_token": "eyJhbGciOiJIUzUxMiJ9...",
                                     "token_type": "Bearer",
-                                    "expires_in": 599
+                                    "expires_in": 599,
+                                    "scope": "ROLE_EXTERNAL_INTEGRATION"
                                 }
                             }
                         }
@@ -697,6 +781,266 @@
                     "state"
                 ]
             },
+            "Pageable": {
+                "type": "object",
+                "properties": {
+                    "page": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 0
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                    },
+                    "sort": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "AddressExternalDto": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "description": "Country",
+                        "example": "Russia"
+                    },
+                    "countryCode": {
+                        "type": "string",
+                        "description": "Country code",
+                        "example": "RU"
+                    },
+                    "city": {
+                        "type": "string",
+                        "description": "City",
+                        "example": "Moscow"
+                    },
+                    "home": {
+                        "type": "string",
+                        "description": "Home number",
+                        "example": 123
+                    },
+                    "street": {
+                        "type": "string",
+                        "description": "Street",
+                        "example": "Lenina"
+                    },
+                    "point": {
+                        "$ref": "#/components/schemas/GeoPoint",
+                        "description": "Geo point"
+                    }
+                },
+                "required": [
+                    "city",
+                    "country",
+                    "countryCode",
+                    "home",
+                    "point",
+                    "street"
+                ]
+            },
+            "GeoPoint": {
+                "type": "object",
+                "properties": {
+                    "x": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "y": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "PageRestaurantExternalDto": {
+                "type": "object",
+                "properties": {
+                    "totalPages": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalElements": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "pageable": {
+                        "$ref": "#/components/schemas/PageableObject"
+                    },
+                    "numberOfElements": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "content": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RestaurantExternalDto"
+                        }
+                    },
+                    "number": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sort": {
+                        "$ref": "#/components/schemas/SortObject"
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "last": {
+                        "type": "boolean"
+                    },
+                    "empty": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PageableObject": {
+                "type": "object",
+                "properties": {
+                    "unpaged": {
+                        "type": "boolean"
+                    },
+                    "paged": {
+                        "type": "boolean"
+                    },
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "offset": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "sort": {
+                        "$ref": "#/components/schemas/SortObject"
+                    }
+                }
+            },
+            "RestaurantExternalDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Restaurant name",
+                        "example": "Gussi"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Restaurant status",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE",
+                            "DELETED"
+                        ],
+                        "example": "ACTIVE"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Restaurant description",
+                        "example": "Gussi is a good restaurant"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/AddressExternalDto",
+                        "description": "Restaurant address"
+                    },
+                    "info": {
+                        "$ref": "#/components/schemas/RestaurantInfoExternalDto",
+                        "description": "Restaurant info"
+                    },
+                    "properties": {
+                        "$ref": "#/components/schemas/RestaurantPropertiesExternalDto",
+                        "description": "Restaurant properties"
+                    }
+                },
+                "required": [
+                    "address",
+                    "id",
+                    "info",
+                    "name",
+                    "properties",
+                    "status"
+                ]
+            },
+            "RestaurantInfoExternalDto": {
+                "type": "object",
+                "properties": {
+                    "phone": {
+                        "type": "string",
+                        "description": "Restaurant phone number",
+                        "example": "+79998887766"
+                    },
+                    "site": {
+                        "type": "string",
+                        "description": "Restaurant site"
+                    },
+                    "telegram": {
+                        "type": "string",
+                        "description": "Restaurant Telegram"
+                    },
+                    "vk": {
+                        "type": "string",
+                        "description": "Restaurant VK"
+                    },
+                    "iikoUid": {
+                        "type": "string",
+                        "description": "IIKO UID",
+                        "example": "123-456-789"
+                    },
+                    "iikoCrmId": {
+                        "type": "string",
+                        "description": "IIKO CRM ID",
+                        "example": 123456789
+                    },
+                    "taxNumber": {
+                        "type": "string",
+                        "description": "Tax number",
+                        "example": 123456789
+                    }
+                }
+            },
+            "RestaurantPropertiesExternalDto": {
+                "type": "object",
+                "properties": {
+                    "guestAcquisitionChannelEnabled": {
+                        "type": "boolean",
+                        "description": "Indicates that the restaurant has connected this guest acquisition channel and you can send your reservations to it"
+                    }
+                },
+                "required": [
+                    "guestAcquisitionChannelEnabled"
+                ]
+            },
+            "SortObject": {
+                "type": "object",
+                "properties": {
+                    "unsorted": {
+                        "type": "boolean"
+                    },
+                    "sorted": {
+                        "type": "boolean"
+                    },
+                    "empty": {
+                        "type": "boolean"
+                    }
+                }
+            },
             "RestaurantTableCountDto": {
                 "type": "object",
                 "properties": {
@@ -800,142 +1144,6 @@
                     "end",
                     "isWorkingTime",
                     "start"
-                ]
-            },
-            "AddressExternalDto": {
-                "type": "object",
-                "properties": {
-                    "country": {
-                        "type": "string",
-                        "description": "Country",
-                        "example": "Russia"
-                    },
-                    "countryCode": {
-                        "type": "string",
-                        "description": "Country code",
-                        "example": "RU"
-                    },
-                    "city": {
-                        "type": "string",
-                        "description": "City",
-                        "example": "Moscow"
-                    },
-                    "home": {
-                        "type": "string",
-                        "description": "Home number",
-                        "example": 123
-                    },
-                    "street": {
-                        "type": "string",
-                        "description": "Street",
-                        "example": "Lenina"
-                    },
-                    "point": {
-                        "$ref": "#/components/schemas/GeoPoint",
-                        "description": "Geo point"
-                    }
-                },
-                "required": [
-                    "city",
-                    "country",
-                    "countryCode",
-                    "home",
-                    "point",
-                    "street"
-                ]
-            },
-            "GeoPoint": {
-                "type": "object",
-                "properties": {
-                    "x": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "y": {
-                        "type": "number",
-                        "format": "double"
-                    }
-                }
-            },
-            "RestaurantExternalDto": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Restaurant name",
-                        "example": "Gussi"
-                    },
-                    "status": {
-                        "type": "string",
-                        "description": "Restaurant status",
-                        "enum": [
-                            "ACTIVE",
-                            "INACTIVE",
-                            "DELETED"
-                        ],
-                        "example": "ACTIVE"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Restaurant description",
-                        "example": "Gussi is a good restaurant"
-                    },
-                    "address": {
-                        "$ref": "#/components/schemas/AddressExternalDto",
-                        "description": "Restaurant address"
-                    },
-                    "properties": {
-                        "$ref": "#/components/schemas/RestaurantPropertiesExternalDto",
-                        "description": "Restaurant properties"
-                    },
-                    "identification": {
-                        "$ref": "#/components/schemas/RestaurantIdentificationExternalDto",
-                        "description": "Restaurant identification"
-                    }
-                },
-                "required": [
-                    "address",
-                    "id",
-                    "identification",
-                    "name",
-                    "properties",
-                    "status"
-                ]
-            },
-            "RestaurantIdentificationExternalDto": {
-                "type": "object",
-                "properties": {
-                    "taxNumber": {
-                        "type": "string",
-                        "description": "Tax number",
-                        "example": 123456789
-                    },
-                    "iikoUid": {
-                        "type": "string",
-                        "description": "IIKO UID",
-                        "example": "123-456-789"
-                    },
-                    "iikoCrmId": {
-                        "type": "string",
-                        "description": "IIKO CRM ID",
-                        "example": 123456789
-                    }
-                }
-            },
-            "RestaurantPropertiesExternalDto": {
-                "type": "object",
-                "properties": {
-                    "guestAcquisitionChannelEnabled": {
-                        "type": "boolean",
-                        "description": "Indicates that the restaurant has connected this guest acquisition channel and you can send your reservations to it"
-                    }
-                },
-                "required": [
-                    "guestAcquisitionChannelEnabled"
                 ]
             },
             "ExternalDto": {
