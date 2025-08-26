@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "https://dev-backend-1.guestme.space",
+      "url": "http://dev-backend-1.guestme.space",
       "description": "Generated server url"
     }
   ],
@@ -679,9 +679,9 @@
                   }
                 },
                 "example": {
-                  "token_type": "Bearer",
-                  "access_token": "eyJhbGciOiJIUzUxMiJ9...",
                   "scope": "ROLE_EXTERNAL_INTEGRATION",
+                  "access_token": "eyJhbGciOiJIUzUxMiJ9...",
+                  "token_type": "Bearer",
                   "expires_in": 599
                 }
               }
@@ -709,7 +709,14 @@
           },
           "token": {
             "type": "string",
-            "description": "Bearer token for webhook request"
+            "description": "Token for webhook request"
+          },
+          "authorizationHeaderPrefix": {
+            "type": "string",
+            "description": "Authorization header prefix",
+            "example": "Bearer",
+            "maxLength": 20,
+            "minLength": 0
           },
           "events": {
             "type": "array",
@@ -1046,6 +1053,9 @@
           "unpaged": {
             "type": "boolean"
           },
+          "paged": {
+            "type": "boolean"
+          },
           "pageNumber": {
             "type": "integer",
             "format": "int32"
@@ -1053,9 +1063,6 @@
           "pageSize": {
             "type": "integer",
             "format": "int32"
-          },
-          "paged": {
-            "type": "boolean"
           },
           "offset": {
             "type": "integer",

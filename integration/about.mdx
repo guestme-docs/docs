@@ -42,10 +42,12 @@ grant_type=client_credentials&scope=ROLE_EXTERNAL_INTEGRATION
 
 - `url`: адрес вашей системы, куда GuestMe будет отправлять события.
 
-И опционально вы можете указать токен:
+И опционально вы можете указать токен и префикс хедера авторизации:
+- `authorizationHeaderPrefix`: префикс который будет добавлен в заголовок `Authorization` перед токеном
 - `token`: ваш собственный токен, который будет добавлен в заголовок `Authorization` каждого запроса вида:
+
 ```
-Authorization: Bearer <ваш_токен>
+Authorization: {authorizationHeaderPrefix} {token}
 ```
 
 Тело события приходит как `WebhookEventExternalDto`, в поле `data` - один из вариантов: `BookingExternalDto` или `RestaurantExternalDto`.
