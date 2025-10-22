@@ -56,6 +56,7 @@
               {
                 "group": "Работа с резервами",
                 "pages": [
+                  "features/booking/booking-scheme",
                   "features/booking/booking-table",
                   "features/booking/booking-create",
                   "features/booking/booking-edit",
